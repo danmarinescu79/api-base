@@ -4,7 +4,7 @@
  * @Author: Dan Marinescu
  * @Date:   2018-04-10 13:46:41
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2018-04-11 13:16:12
+ * @Last Modified time: 2018-04-12 13:36:57
  */
 
 namespace ApiBase\Mapper;

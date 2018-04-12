@@ -4,7 +4,7 @@
  * @Author: Dan Marinescu
  * @Date:   2018-03-14 14:16:39
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2018-04-03 13:45:57
+ * @Last Modified time: 2018-04-11 14:57:42
  */
 
 namespace ApiBase\Entity;
@@ -50,7 +50,7 @@ class OAuthUser extends EncryptableFieldEntity
     private $password;
 
     /**
-     * @ORM\OneToOne(targetEntity="ApiUser\Entity\UserDetail", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="ApiUser\Entity\UserDetail", mappedBy="user", cascade={"persist", "remove"})
      */
     private $detail;
 
@@ -139,6 +139,9 @@ class OAuthUser extends EncryptableFieldEntity
      */
     public function setDetail(\ApiUser\Entity\UserDetail $detail = null)
     {
+        if (!empty($detail)) {
+            $detail->setUser($this);
+        }
         $this->detail = $detail;
 
         return $this;
