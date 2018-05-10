@@ -29,7 +29,7 @@
         "zfcampus/zf-api-problem": "^1.2",
         "zendframework/zend-console": "^2.7",
         "zendframework/zend-mvc-console": "^1.1",
-        "doctrine/doctrine-orm-module": "^2.1",
+        "doctrine/doctrine-orm-module": "^2.1"
     },
     "require-dev": {
         "zendframework/zend-developer-tools": "^1.1.0"
