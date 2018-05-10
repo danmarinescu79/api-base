@@ -1,0 +1,53 @@
+{
+    "name":         "danmarinescu79/api-base",
+    "type":         "library",
+    "license":      "BSD-3-Clause",
+    "homepage":     "https://github.com/danmarinescu79/api-base",
+    "keywords": [
+        "zf3",
+        "zendframework",
+        "doctrine"
+    ],
+    "authors": [
+        {
+            "name":      "Dan Marinescu",
+            "email":     "dan.marinescu79@icloud.com",
+            "role":      "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.1 || ^7.2",
+        "zendframework/zend-mvc": "^3.0.1",
+        "zendframework/zend-cache": "^2.7.1",
+        "zendframework/zend-mvc-form": "^1.0",
+        "zendframework/zend-json": "^3.0",
+        "zendframework/zend-session": "^2.7.1",
+        "doctrine/doctrine-orm-module": "^1.1",
+        "symfony/var-dumper": "^4.0",
+        "zendframework/zend-crypt": "^3.2",
+        "zfcampus/zf-api-problem": "^1.2",
+        "zendframework/zend-console": "^2.7",
+        "zendframework/zend-mvc-console": "^1.1",
+        "doctrine/doctrine-orm-module": "^2.1",
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "^1.1.0"
+    },
+    "extra": {
+        "zf": {
+            "component": "ApiBase",
+            "module": "ApiBase"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ApiBase\\": "src/ApiBase"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.1-dev"
+        }
+    }
+}
