@@ -4,7 +4,7 @@
  * @Author: Dan Marinescu
  * @Date:   2018-03-14 16:00:08
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2018-04-03 13:46:03
+ * @Last Modified time: 2018-05-22 18:51:13
  */
 
 namespace ApiBase\Entity;
@@ -201,8 +201,14 @@ class OAuthAccessToken
             'client_id'         => $this->client->getId(),
             'client_identifier' => $this->client->getClientIdentifier(),
             'user_id'           => !empty($this->user) ? $this->user->getId() : null,
-            'name'              => !empty($this->user) ? $this->user->getName() : null,
+            'last_name'         => !empty($this->user) ? $this->user->getLastName() : null,
+            'first_name'        => !empty($this->user) ? $this->user->getFirstName() : null,
+            'created_at'        => !empty($this->user) ? $this->user->getCreatedAt() : null,
+            'created_by'        => !empty($this->user) ? $this->user->getCreatedBy() : null,
+            'updated_at'        => !empty($this->user) ? $this->user->getUpdatedAt() : null,
+            'updated_by'        => !empty($this->user) ? $this->user->getUpdatedBy() : null,
             'email'             => !empty($this->user) ? $this->user->getEmail() : null,
+            'status'            => !empty($this->user) ? $this->user->getStatus() : null,
             'expires'           => $this->expires,
             'scope'             => $this->scope,
         ];
