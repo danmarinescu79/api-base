@@ -4,7 +4,7 @@
  * @Author: Dan Marinescu
  * @Date:   2018-03-14 14:16:39
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2018-05-22 18:23:04
+ * @Last Modified time: 2018-05-22 18:39:58
  */
 
 namespace ApiBase\Entity;
@@ -86,7 +86,7 @@ class OAuthUser extends EncryptableFieldEntity
 
     /**
      * @ORM\ManyToOne(targetEntity="OAuthUser")
-     * ORM\JoinColumn(name="updated_by", referencedColumnName="id")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
      */
     private $updatedBy;
 
