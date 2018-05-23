@@ -4,7 +4,7 @@
  * @Author: Dan Marinescu
  * @Date:   2018-04-11 14:17:05
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2018-04-11 14:44:29
+ * @Last Modified time: 2018-05-22 23:56:38
  */
 
 namespace ApiBase\Form\Fieldset;
@@ -31,8 +31,18 @@ class OAuthUser extends Fieldset implements InputFilterProviderInterface
         $this->setHydrator(new DoctrineHydrator($objectManager))->setObject(new Entity());
 
         $this->add([
+            'type' => Element\Hidden::class,
+            'name' => 'id',
+        ]);
+
+        $this->add([
             'type' => Element\Text::class,
-            'name' => 'name',
+            'name' => 'first_name',
+        ]);
+
+        $this->add([
+            'type' => Element\Text::class,
+            'name' => 'last_name',
         ]);
 
         $this->add([
@@ -54,7 +64,13 @@ class OAuthUser extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return [
-            'name' => [
+            'id' => [
+                'required' => false,
+            ],
+            'first_name' => [
+                'required' => true,
+            ],
+            'last_name' => [
                 'required' => true,
             ],
             'email' => [
