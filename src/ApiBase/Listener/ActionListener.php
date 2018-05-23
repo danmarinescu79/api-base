@@ -4,11 +4,13 @@
  * @Author: Dan Marinescu
  * @Date:   2018-05-23 12:03:57
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2018-05-23 12:21:52
+ * @Last Modified time: 2018-05-23 13:19:16
  */
 
 namespace ApiBase\Listener;
 
+use ApiBase\Entity\OAuthAccessToken;
+use ApiBase\Entity\OAuthRefreshToken;
 use Doctrine\Common\Persistence\ObjectManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Zend\ServiceManager\ServiceManager;
@@ -34,9 +36,13 @@ class ActionListener
     {
         $entity = $eventArgs->getEntity();
 
+        if ($entity instanceof OAuthAccessToken || $entity instanceof OAuthRefreshToken) {
+            return;
+        }
+
         $oauth = $this->server->getAccessTokenData(\OAuth2\Request::createFromGlobals());
 
-        if (isset($oauth['user_id']) && method_exists($entity, 'setCreatedBy')) {
+        if (!empty($oauth) && isset($oauth['user_id']) && method_exists($entity, 'setCreatedBy')) {
             $this->hydrator->hydrate(['createdBy' => $oauth['user_id']], $entity);
         }
     }
@@ -45,9 +51,13 @@ class ActionListener
     {
         $entity = $eventArgs->getEntity();
 
+        if ($entity instanceof OAuthAccessToken || $entity instanceof OAuthRefreshToken) {
+            return;
+        }
+
         $oauth = $this->server->getAccessTokenData(\OAuth2\Request::createFromGlobals());
 
-        if (isset($oauth['user_id']) && method_exists($entity, 'setUpdatedBy')) {
+        if ($oauth && isset($oauth['user_id']) && method_exists($entity, 'setUpdatedBy')) {
             $this->hydrator->hydrate(['updatedBy' => $oauth['user_id']], $entity);
         }
     }
