@@ -4,7 +4,7 @@
  * @Author: Dan Marinescu
  * @Date:   2018-04-11 14:17:05
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2018-05-22 23:56:38
+ * @Last Modified time: 2018-05-24 14:10:34
  */
 
 namespace ApiBase\Form\Fieldset;
@@ -21,12 +21,14 @@ use Zend\Validator;
 class OAuthUser extends Fieldset implements InputFilterProviderInterface
 {
     private $objectManager;
+    private $allowEmpty;
 
-    public function __construct(ObjectManager $objectManager)
+    public function __construct(ObjectManager $objectManager, bool $allowEmpty = false)
     {
         parent::__construct('oauth_user');
 
         $this->objectManager = $objectManager;
+        $this->allowEmpty    = $allowEmpty;
 
         $this->setHydrator(new DoctrineHydrator($objectManager))->setObject(new Entity());
 
@@ -91,8 +93,9 @@ class OAuthUser extends Fieldset implements InputFilterProviderInterface
                 ],
             ],
             'password' => [
-                'required'   => true,
-                'validators' => [
+                'required'    => $this->allowEmpty ? false : true,
+                'allow_empty' => $this->allowEmpty,
+                'validators'  => [
                     [
                         'name'    => Validator\StringLength::class,
                         'options' => [
@@ -103,8 +106,9 @@ class OAuthUser extends Fieldset implements InputFilterProviderInterface
                 ],
             ],
             'verify_password' => [
-                'required'   => true,
-                'validators' => [
+                'required'    => $this->allowEmpty ? false : true,
+                'allow_empty' => $this->allowEmpty,
+                'validators'  => [
                     [
                         'name'    => Validator\Identical::class,
                         'options' => [
