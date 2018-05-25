@@ -16,6 +16,9 @@
             "role":      "Developer"
         }
     ],
+    "config": {
+        "sort-packages": true
+    },
     "minimum-stability": "dev",
     "require": {
         "php": "^7.1 || ^7.2",
