@@ -10,6 +10,7 @@
 namespace ApiBase;
 
 use Zend\EventManager\EventInterface as MvcEvent;
+use Zend\ServiceManager\ServiceManager;
 
 class Module
 {
@@ -31,5 +32,22 @@ class Module
     public function getConfig()
     {
         return include __DIR__ . '/../../config/module.config.php';
+    }
+
+    public function getServiceConfig()
+    {
+        return [
+            'factories' => [
+                'doctrine.cache.memcached' => function (ServiceManager $serviceManager) {
+                    $cache = new \Doctrine\Common\Cache\MemcachedCache();
+
+                    $memcache = new \Memcached();
+                    $memcache->addServer('localhost', 11211);
+                    $cache->setMemcached($memcache);
+
+                    return $cache;
+                }
+            ],
+        ];
     }
 }
