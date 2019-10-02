@@ -12,6 +12,11 @@ namespace ApiBase;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
+    'service_manager' => [
+        'factories' => [
+            'doctrine.memcached' => new Factory\DoctrineCache(),
+        ],
+    ],
     'doctrine' => [
         'driver' => [
             __NAMESPACE__ . '_driver' => [
